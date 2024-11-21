@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: e40ffba5f21ec8246adf0930e9276bbe
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - crosshairPrefab: {instanceID: 0}
+  - revolverShootSound: {fileID: 8300000, guid: eb2e0505ed454704db90ff143c024bf1, type: 3}
+  - revolverHammerClickSound: {fileID: 8300000, guid: 8fc3f12cebcebc24c84955df48cc78e2, type: 3}
+  - revolverEmptyClickSound: {fileID: 8300000, guid: 34d9f183e498e3547aa89f9b06ecef32, type: 3}
+  - revolverReload1Sound: {fileID: 8300000, guid: 4fbad64c3068d0348a52887e6c9a8128, type: 3}
+  - revolverReload2Sound: {fileID: 8300000, guid: 4fbad64c3068d0348a52887e6c9a8128, type: 3}
+  - revolverReloadLastSound: {fileID: 8300000, guid: aba881994da818b49a4a823a7da007ad, type: 3}
+  - hitTargetSound: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
