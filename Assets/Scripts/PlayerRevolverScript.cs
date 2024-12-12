@@ -96,24 +96,20 @@ public class PlayerRevolverScript : MonoBehaviour
 
                 if (hit.collider != null && hit.collider.CompareTag("Target"))
                 {
-                    // Destroy target and play hit sound
-                    Destroy(hit.collider.gameObject);
-                    PlaySound(hitTargetSound);
+                    // Call the bottle's HitByBullet method
+                    ThrownBottleScript bottleScript = hit.collider.GetComponent<ThrownBottleScript>();
+                    if (bottleScript != null)
+                    {
+                        bottleScript.HitByBullet();
+                        PlaySound(hitTargetSound);
+                    }
                 }
             }
             else
             {
                 // Play empty revolver sound
                 PlaySound(revolverEmptyClickSound);
-                print("CLICK!");
-                hammerPulledBack = false;
             }
-        }
-        else
-        {
-            // Play empty revolver sound
-            PlaySound(revolverEmptyClickSound);
-            print("CLICK!");
         }
     }
 
