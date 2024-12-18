@@ -103,6 +103,18 @@ public class PlayerRevolverScript : MonoBehaviour
                         bottleScript.HitByBullet();
                         PlaySound(hitTargetSound);
                     }
+                    MovingTargetScript movingTargetScript = hit.collider.GetComponent<MovingTargetScript>();
+                    if (movingTargetScript != null)
+                    {
+                        movingTargetScript.HitByBullet();
+                        PlaySound(hitTargetSound);
+                    }
+                    BanditScript banditScript = hit.collider.GetComponent<BanditScript>();
+                    if (banditScript != null)
+                    {
+                        banditScript.HitByBullet();
+                        PlaySound(hitTargetSound);
+                    }
                 }
             }
             else

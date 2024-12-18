@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6740370115495233670
+--- !u!1 &5126895091381790664
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5995679822948277361}
-  - component: {fileID: 6348828055715165767}
-  - component: {fileID: 6653858431802471314}
-  - component: {fileID: 1301877327902343905}
-  - component: {fileID: 6917001444455173397}
+  - component: {fileID: 7350220481473184245}
+  - component: {fileID: 5174545237953559916}
+  - component: {fileID: 3554309489089397584}
+  - component: {fileID: 3199693771158733365}
+  - component: {fileID: -9129120922003296734}
   m_Layer: 6
-  m_Name: MovingTarget
+  m_Name: Balloon
   m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5995679822948277361
+--- !u!4 &7350220481473184245
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6740370115495233670}
+  m_GameObject: {fileID: 5126895091381790664}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6348828055715165767
+--- !u!212 &5174545237953559916
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6740370115495233670}
+  m_GameObject: {fileID: 5126895091381790664}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0e7cfeebf7ac0e24a9b64afef830aa37, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,29 +87,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6653858431802471314
+--- !u!114 &3554309489089397584
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6740370115495233670}
+  m_GameObject: {fileID: 5126895091381790664}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d94794d3c37d214d864db39a9493690, type: 3}
+  m_Script: {fileID: 11500000, guid: 3512595eb6c50014695f63efc541c71b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  targetDestroyedClips:
-  - {fileID: 0}
-  - {fileID: 0}
---- !u!61 &1301877327902343905
+  minFloatSpeed: 1
+  maxFloatSpeed: 3
+  minSwaySpeed: 1
+  maxSwaySpeed: 3
+  minSwayRange: 0.2
+  maxSwayRange: 1
+  popSound1: {fileID: 0}
+  popSound2: {fileID: 0}
+  baloonSprites:
+  - {fileID: 21300000, guid: 131c8aea598f01a44a95e2570b358d79, type: 3}
+  - {fileID: 21300000, guid: f939a29350d5e264ab6cc81d564d02d6, type: 3}
+  - {fileID: 21300000, guid: d357485d19fbf30428121c3817e4a1ec, type: 3}
+--- !u!61 &3199693771158733365
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6740370115495233670}
+  m_GameObject: {fileID: 5126895091381790664}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -139,7 +147,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.2, y: 1.2}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -148,14 +156,14 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!50 &6917001444455173397
+--- !u!50 &-9129120922003296734
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6740370115495233670}
+  m_GameObject: {fileID: 5126895091381790664}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0

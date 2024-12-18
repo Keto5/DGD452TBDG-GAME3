@@ -68,7 +68,7 @@ public class ThrownBottleScript : MonoBehaviour
         PlaySound(destructionSound);
 
         // Add score
-        AddScore(100);
+        AddScore(200);
 
         // Destroy the bottle
         Destroy(gameObject);

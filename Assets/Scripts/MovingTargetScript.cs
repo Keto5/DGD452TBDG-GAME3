@@ -4,8 +4,9 @@ using UnityEngine;
 public class MovingTargetScript : MonoBehaviour
 {
     public float speed = 2f; // Speed of the target's movement
-    public AudioClip[] targetDestroyedClips; // Array to hold the sound effects
-
+    public AudioClip targetDestroyedSound1; // First destruction sound
+    public AudioClip targetDestroyedSound2; // Second destruction sound
+    
     private Vector2 movementDirection;
     private AudioSource audioSource;
     private ScoreMasterScript scoreMaster;
@@ -67,17 +68,16 @@ public class MovingTargetScript : MonoBehaviour
 
     public void HitByBullet()
     {
-        // Add 100 points using the provided AddScore method
-        AddScore(100);
+        // Randomly select a destruction sound
+        AudioClip destructionSound = Random.value > 0.5f ? targetDestroyedSound1 : targetDestroyedSound2;
 
-        // Play a random "TargetDestroyed" sound effect
-        if (targetDestroyedClips.Length > 0 && audioSource != null)
-        {
-            AudioClip clipToPlay = targetDestroyedClips[Random.Range(0, targetDestroyedClips.Length)];
-            audioSource.PlayOneShot(clipToPlay);
-        }
+        // Play destruction sound
+        PlaySound(destructionSound);
 
-        // Destroy the target
+        // Add score
+        AddScore(75);
+
+        // Destroy the bottle
         Destroy(gameObject);
     }
 
@@ -88,7 +88,14 @@ public class MovingTargetScript : MonoBehaviour
             scoreMaster.AddPoints(points);
         }
     }
-
+    
+    private void PlaySound(AudioClip clip)
+    {
+        if (clip != null)
+        {
+            AudioSource.PlayClipAtPoint(clip, transform.position);
+        }
+    }
     public void SetDirection(string direction)
     {
         switch (direction.ToLower())
