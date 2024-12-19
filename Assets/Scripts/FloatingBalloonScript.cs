@@ -27,6 +27,9 @@ public class FloatingBalloonScript : MonoBehaviour
     private const string destroyTargetsTag = "DestroyTargetsHitbox"; // DestroyTargetsHitbox tag
     private bool isPopped = false; // Whether this balloon has been popped
     private SpriteRenderer spriteRenderer; // Sprite renderer
+
+    // Create a new AudioSource for central screen sound effect
+    private AudioSource centerAudioSource;
     
     void Start()
     {
@@ -75,6 +78,12 @@ public class FloatingBalloonScript : MonoBehaviour
 
         // Ensure object is tagged as "Target"
         gameObject.tag = "Target";
+
+        // Set up the AudioSource for playing sound at the center of the screen
+        GameObject centerSoundObject = new GameObject("CenterAudioSource");
+        centerSoundObject.transform.position = Camera.main.transform.position; // Place at the camera's position (center of screen)
+        centerAudioSource = centerSoundObject.AddComponent<AudioSource>();
+        centerAudioSource.spatialBlend = 0f; // Make sure it plays as 2D sound
     }
 
     void Update()
@@ -86,15 +95,6 @@ public class FloatingBalloonScript : MonoBehaviour
         float swayOffset = Mathf.Sin(Time.time * swaySpeed) * swayRange;
         transform.position = new Vector3(initialPosition.x + swayOffset, transform.position.y, transform.position.z);
     }
-
-    /*void OnMouseDown()
-    {
-        // Destroy only if clicked and not already popped
-        if (!isPopped)
-        {
-            PopBalloon();
-        }
-    }*/
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -109,7 +109,6 @@ public class FloatingBalloonScript : MonoBehaviour
     // Called when the player shoots the balloon
     public void ShootBalloon()
     {
-        print("womp");
         // Check for bullets and hammer status in the revolver before popping the balloon
         if (!isPopped && playerRevolver != null && playerRevolver.currentBullets > 0 && playerRevolver.hammerPulledBack)
         {
@@ -127,9 +126,9 @@ public class FloatingBalloonScript : MonoBehaviour
         // Randomly choose a popping sound
         AudioClip chosenSound = Random.value > 0.5f ? popSound1 : popSound2;
 
-        if (audioSource != null && chosenSound != null)
+        if (centerAudioSource != null && chosenSound != null)
         {
-            audioSource.PlayOneShot(chosenSound);
+            centerAudioSource.PlayOneShot(chosenSound); // Play at the center of the screen
         }
 
         // Add score

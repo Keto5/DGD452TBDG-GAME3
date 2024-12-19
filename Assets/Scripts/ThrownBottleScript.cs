@@ -6,7 +6,8 @@ public class ThrownBottleScript : MonoBehaviour
     public float throwArcAngle = 120f; // Arc angle for random direction
     public float minSpinSpeed = 100f; // Minimum spin speed (degrees per second)
     public float maxSpinSpeed = 500f; // Maximum spin speed (degrees per second)
-    
+
+    // Sprites for the bottle
     public Sprite[] bottleSprites; // Array of sprites to choose from
 
     // Sound effects
@@ -38,7 +39,7 @@ public class ThrownBottleScript : MonoBehaviour
         float randomSpin = Random.Range(minSpinSpeed, maxSpinSpeed);
         rb.angularVelocity = randomSpin * (Random.value > 0.5f ? 1 : -1);
 
-        // Play thrown sound
+        // Play thrown sound at the center of the screen
         PlaySound(bottleThrownSound);
 
         // Find ScoreMasterScript
@@ -63,11 +64,11 @@ public class ThrownBottleScript : MonoBehaviour
         // Randomly select a destruction sound
         AudioClip destructionSound = Random.value > 0.5f ? bottleDestroyedSound1 : bottleDestroyedSound2;
 
-        // Play destruction sound
+        // Play destruction sound at the center of the screen
         PlaySound(destructionSound);
 
         // Add score
-        AddScore(200);
+        AddScore(100);
 
         // Destroy the bottle
         Destroy(gameObject);
@@ -85,7 +86,12 @@ public class ThrownBottleScript : MonoBehaviour
     {
         if (clip != null)
         {
-            AudioSource.PlayClipAtPoint(clip, transform.position);
+            // Get the center of the screen's position (camera's position)
+            Vector3 screenCenterPosition = Camera.main.transform.position;
+            screenCenterPosition.z = -10; // Ensure it's on the same Z plane for 2D sound
+
+            // Play the sound at the screen's center
+            AudioSource.PlayClipAtPoint(clip, screenCenterPosition);
         }
     }
 }

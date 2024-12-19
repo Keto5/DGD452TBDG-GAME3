@@ -80,7 +80,7 @@ public class BanditSpawnerScript : MonoBehaviour
             SetBanditDirection(newBandit.transform);
 
             // Play random spawn sound
-            banditScript.PlayRandomSpawnSound();
+            banditScript.PlayRandomSpawnSoundAtCenter();
         }
     }
 

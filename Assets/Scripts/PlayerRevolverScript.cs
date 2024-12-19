@@ -22,12 +22,10 @@ public class PlayerRevolverScript : MonoBehaviour
     private bool isReloading = false;
 
     private Camera mainCamera;
-    private AudioSource audioSource;
 
     void Start()
     {
         mainCamera = Camera.main;
-        audioSource = GetComponent<AudioSource>();
         currentBullets = maxBullets;
 
         // Spawn crosshair
@@ -67,13 +65,8 @@ public class PlayerRevolverScript : MonoBehaviour
 
     void PullBackHammer()
     {
-        /*if (hammerPulledBack || currentBullets <= 0)
-        {
-            return;
-        }*/
-
         hammerPulledBack = true;
-        PlaySound(revolverHammerClickSound);
+        PlaySoundAtCenter(revolverHammerClickSound);
     }
 
     void Shoot()
@@ -88,7 +81,7 @@ public class PlayerRevolverScript : MonoBehaviour
                 // Decrease bullets and play shooting sound
                 currentBullets--;
                 hammerPulledBack = false;
-                PlaySound(revolverShootSound);
+                PlaySoundAtCenter(revolverShootSound);
 
                 // Raycast to check for hit
                 Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -101,32 +94,32 @@ public class PlayerRevolverScript : MonoBehaviour
                     if (bottleScript != null)
                     {
                         bottleScript.HitByBullet();
-                        PlaySound(hitTargetSound);
+                        PlaySoundAtCenter(hitTargetSound);
                     }
                     FloatingBalloonScript floatingBalloonScript = hit.collider.GetComponent<FloatingBalloonScript>();
                     if (floatingBalloonScript != null)
                     {
                         floatingBalloonScript.PopBalloon();
-                        PlaySound(hitTargetSound);
+                        PlaySoundAtCenter(hitTargetSound);
                     }
                     MovingTargetScript movingTargetScript = hit.collider.GetComponent<MovingTargetScript>();
                     if (movingTargetScript != null)
                     {
                         movingTargetScript.HitByBullet();
-                        PlaySound(hitTargetSound);
+                        PlaySoundAtCenter(hitTargetSound);
                     }
                     BanditScript banditScript = hit.collider.GetComponent<BanditScript>();
                     if (banditScript != null)
                     {
                         banditScript.HitByBullet();
-                        PlaySound(hitTargetSound);
+                        PlaySoundAtCenter(hitTargetSound);
                     }
                 }
             }
             else
             {
                 // Play empty revolver click sound
-                PlaySound(revolverEmptyClickSound);
+                PlaySoundAtCenter(revolverEmptyClickSound);
             }
         }
     }
@@ -149,20 +142,22 @@ public class PlayerRevolverScript : MonoBehaviour
         if (currentBullets == maxBullets)
         {
             // Play full revolver reload sound
-            PlaySound(revolverReloadLastSound);
+            PlaySoundAtCenter(revolverReloadLastSound);
         }
         else
         {
             // Play a random reload sound
-            PlaySound(Random.value > 0.5f ? revolverReload1Sound : revolverReload2Sound);
+            PlaySoundAtCenter(Random.value > 0.5f ? revolverReload1Sound : revolverReload2Sound);
         }
     }
 
-    void PlaySound(AudioClip clip)
+    void PlaySoundAtCenter(AudioClip clip)
     {
-        if (clip != null && audioSource != null)
+        if (clip != null)
         {
-            audioSource.PlayOneShot(clip);
+            Vector3 screenCenterPosition = Camera.main.transform.position;
+            screenCenterPosition.z = -10; // Ensure it's on the same Z plane for 2D sound
+            AudioSource.PlayClipAtPoint(clip, screenCenterPosition);
         }
     }
 

@@ -27,6 +27,9 @@ public class BanditScript : MonoBehaviour
         timeToShootPlayer = Random.Range(2f, 4f); // Randomize the time to shoot the player (2 to 5 seconds)
         
         Invoke(nameof(ShootPlayer), timeToShootPlayer); // Start countdown to shoot the player
+        
+        // Play the spawn sound at the center of the screen
+        PlayRandomSpawnSoundAtCenter();
     }
 
     private void Update()
@@ -45,14 +48,15 @@ public class BanditScript : MonoBehaviour
         }
     }
 
-    public void PlayRandomSpawnSound()
+    public void PlayRandomSpawnSoundAtCenter()
     {
-        if (audioSource != null)
-        {
-            // Randomly pick a spawn sound
-            AudioClip spawnSound = Random.value > 0.5f ? banditSpawnSound1 : banditSpawnSound2;
-            audioSource.PlayOneShot(spawnSound);
-        }
+        // Randomly pick a spawn sound
+        AudioClip spawnSound = Random.value > 0.5f ? banditSpawnSound1 : banditSpawnSound2;
+
+        // Play the sound at the center of the screen (Vector3.zero)
+        Vector3 screenCenterPosition = Camera.main.transform.position;
+        screenCenterPosition.z = -10; // Ensure it's on the same Z plane for 2D sound
+        AudioSource.PlayClipAtPoint(spawnSound, screenCenterPosition);
     }
 
     public void HitByBullet()
