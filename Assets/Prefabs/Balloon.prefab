@@ -100,12 +100,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minFloatSpeed: 1
-  maxFloatSpeed: 3
+  maxFloatSpeed: 6
   minSwaySpeed: 1
-  maxSwaySpeed: 3
+  maxSwaySpeed: 4
   minSwayRange: 0.2
-  maxSwayRange: 1
-  popSound1: {fileID: 0}
+  maxSwayRange: 2
+  popSound1: {fileID: 8300000, guid: 6ebd84328a8153940a70e56caa758c7d, type: 3}
   popSound2: {fileID: 0}
   baloonSprites:
   - {fileID: 21300000, guid: 131c8aea598f01a44a95e2570b358d79, type: 3}

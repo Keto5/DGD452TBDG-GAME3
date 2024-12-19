@@ -19,6 +19,7 @@ public class FloatingBalloonScript : MonoBehaviour
     public Sprite[] baloonSprites; // Array of sprites to choose from
     private AudioSource audioSource; // Reference to the AudioSource
     private ScoreMasterScript scoreMaster; // ScoreMaster reference
+    private PlayerRevolverScript playerRevolver; // Reference to the PlayerRevolverScript
     private float floatSpeed; // Floating speed
     private float swaySpeed; // Sway speed
     private float swayRange; // Sway range
@@ -61,6 +62,17 @@ public class FloatingBalloonScript : MonoBehaviour
             Debug.LogError("ScoreMaster object not found in the scene.");
         }
 
+        // Get reference to PlayerRevolverScript
+        GameObject playerObject = GameObject.FindWithTag("Player");
+        if (playerObject != null)
+        {
+            playerRevolver = playerObject.GetComponent<PlayerRevolverScript>();
+        }
+        else
+        {
+            Debug.LogError("Player object with PlayerRevolverScript not found.");
+        }
+
         // Ensure object is tagged as "Target"
         gameObject.tag = "Target";
     }
@@ -75,14 +87,14 @@ public class FloatingBalloonScript : MonoBehaviour
         transform.position = new Vector3(initialPosition.x + swayOffset, transform.position.y, transform.position.z);
     }
 
-    void OnMouseDown()
+    /*void OnMouseDown()
     {
         // Destroy only if clicked and not already popped
         if (!isPopped)
         {
             PopBalloon();
         }
-    }
+    }*/
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -94,17 +106,22 @@ public class FloatingBalloonScript : MonoBehaviour
         }
     }
 
-    // Called when the player interacts with or shoots the balloon
+    // Called when the player shoots the balloon
     public void ShootBalloon()
     {
-        if (!isPopped)
+        print("womp");
+        // Check for bullets and hammer status in the revolver before popping the balloon
+        if (!isPopped && playerRevolver != null && playerRevolver.currentBullets > 0 && playerRevolver.hammerPulledBack)
         {
-            PopBalloon();
+            playerRevolver.currentBullets--; // Deduct one bullet
+            playerRevolver.hammerPulledBack = false; // Reset hammer
+            //PopBalloon();
         }
     }
 
-    private void PopBalloon()
+    public void PopBalloon()
     {
+        print("womp womp");
         isPopped = true;
 
         // Randomly choose a popping sound

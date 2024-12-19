@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerRevolverScript : MonoBehaviour
 {
-    public GameObject crosshairPrefab; // Assign the PlayerCrosshair prefab in the Inspector
+    public GameObject crosshairPrefab; // Assign the PlayerCrosshair prefab
     private GameObject crosshairInstance;
 
     public AudioClip revolverShootSound;
@@ -30,7 +30,7 @@ public class PlayerRevolverScript : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         currentBullets = maxBullets;
 
-        // Spawn crosshair instance
+        // Spawn crosshair
         crosshairInstance = Instantiate(crosshairPrefab);
         crosshairInstance.SetActive(true);
     }
@@ -85,7 +85,7 @@ public class PlayerRevolverScript : MonoBehaviour
         {
             if (currentBullets > 0)
             {
-                // Decrement bullets and play shooting sound
+                // Decrease bullets and play shooting sound
                 currentBullets--;
                 hammerPulledBack = false;
                 PlaySound(revolverShootSound);
@@ -101,6 +101,12 @@ public class PlayerRevolverScript : MonoBehaviour
                     if (bottleScript != null)
                     {
                         bottleScript.HitByBullet();
+                        PlaySound(hitTargetSound);
+                    }
+                    FloatingBalloonScript floatingBalloonScript = hit.collider.GetComponent<FloatingBalloonScript>();
+                    if (floatingBalloonScript != null)
+                    {
+                        floatingBalloonScript.PopBalloon();
                         PlaySound(hitTargetSound);
                     }
                     MovingTargetScript movingTargetScript = hit.collider.GetComponent<MovingTargetScript>();
@@ -119,7 +125,7 @@ public class PlayerRevolverScript : MonoBehaviour
             }
             else
             {
-                // Play empty revolver sound
+                // Play empty revolver click sound
                 PlaySound(revolverEmptyClickSound);
             }
         }

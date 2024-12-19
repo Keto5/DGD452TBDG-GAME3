@@ -53,7 +53,7 @@ public class PlayerHealthScript : MonoBehaviour
                 spriteRenderer.sprite = healthSprite1;
                 break;
             default:
-                // Optionally handle cases where health is 0 or less
+                // Handle cases where health is 0 or less (This should never happen since the room changes)
                 spriteRenderer.sprite = null;
                 break;
         }

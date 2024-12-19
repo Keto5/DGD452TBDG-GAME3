@@ -287,7 +287,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7ad133b92548a434a90822b7c0c8b756, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fbf79b8c63de2524686a131e7317a666, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -308,7 +308,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: -4.52, z: 0}
-  m_LocalScale: {x: 0.40000004, y: 0.40000004, z: 0.40000004}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -1107,11 +1107,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 585567183}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -690, y: 20}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 152, y: 22}
   m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 1, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &1038929491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1243,6 +1243,7 @@ MonoBehaviour:
   spawnAreaWidth: 0.5
   spawnAreaHeight: 8
   spawnDirection: right
+  enableRoundRobin: 1
 --- !u!212 &1120763502
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1529,11 +1530,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 585567183}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 17, y: -214.3}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 17, y: 53.699997}
   m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1164784099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1554,9 +1555,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '= 125    = 200
+  m_text: '= 100    = 200
 
-    = 75      = 250'
+    = 50      = 250'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2780,6 +2781,7 @@ MonoBehaviour:
   spawnAreaWidth: 0.5
   spawnAreaHeight: 8
   spawnDirection: left
+  enableRoundRobin: 1
 --- !u!1 &2001039504
 GameObject:
   m_ObjectHideFlags: 0

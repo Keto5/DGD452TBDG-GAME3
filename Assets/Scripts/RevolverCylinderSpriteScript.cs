@@ -35,7 +35,7 @@ public class RevolverCylinderSpriteScript : MonoBehaviour
             // Ensure the number of bullets is within the range [0, 6]
             int bullets = Mathf.Clamp(playerRevolverScript.currentBullets, 0, 6);
 
-            // Set the sprite based on the current number of bullets
+            // Set the sprite based on the current number of bullets in the revovler
             spriteRenderer.sprite = cylinderSprites[bullets];
         }
     }

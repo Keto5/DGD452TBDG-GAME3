@@ -100,9 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  targetDestroyedClips:
-  - {fileID: 0}
-  - {fileID: 0}
+  targetDestroyedSound1: {fileID: 8300000, guid: 8f41ff79ee139ed43acd7db28b8702e8, type: 3}
+  targetDestroyedSound2: {fileID: 8300000, guid: 870769991448d574d958d2d1f6390090, type: 3}
 --- !u!61 &1301877327902343905
 BoxCollider2D:
   m_ObjectHideFlags: 0

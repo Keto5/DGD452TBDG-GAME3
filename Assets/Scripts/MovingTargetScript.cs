@@ -75,7 +75,7 @@ public class MovingTargetScript : MonoBehaviour
         PlaySound(destructionSound);
 
         // Add score
-        AddScore(75);
+        AddScore(50);
 
         // Destroy the bottle
         Destroy(gameObject);

@@ -36,10 +36,10 @@ public class BottleSpawnerScript : MonoBehaviour
 
     void ScheduleNextSpawn()
     {
-        // Determine the next spawn time with weighted randomness
+        // Determine the next spawn time with randomness
         nextSpawnTime = Random.Range(minSpawnInterval, maxSpawnInterval);
 
-        // Increase the likelihood of spawning as time increases
+        // Increase the chance of spawning as time increases
         float weight = Mathf.InverseLerp(minSpawnInterval, maxSpawnInterval, nextSpawnTime);
         nextSpawnTime = Mathf.Lerp(minSpawnInterval, maxSpawnInterval, weight);
     }
@@ -56,7 +56,7 @@ public class BottleSpawnerScript : MonoBehaviour
         }
         else
         {
-            // Spawn all bottles simultaneously
+            // Spawn all bottles simultaneouslly
             for (int i = 0; i < bottleCount; i++)
             {
                 SpawnBottle();
@@ -66,7 +66,6 @@ public class BottleSpawnerScript : MonoBehaviour
 
     IEnumerator SpawnBottlesWithDelay(int count)
     {
-        print("womp");
         for (int i = 0; i < count; i++)
         {
             SpawnBottle();

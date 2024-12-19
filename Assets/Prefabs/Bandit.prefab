@@ -100,10 +100,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minSpeed: 0.5
-  maxSpeed: 5
+  maxSpeed: 4
   banditShootPlayerSprite: {fileID: 21300000, guid: 7ad133b92548a434a90822b7c0c8b756, type: 3}
-  banditShotSound1: {fileID: 0}
-  banditShotSound2: {fileID: 0}
+  banditShotSound1: {fileID: 8300000, guid: eb2e0505ed454704db90ff143c024bf1, type: 3}
+  banditShotSound2: {fileID: 8300000, guid: eb2e0505ed454704db90ff143c024bf1, type: 3}
+  banditSpawnSound1: {fileID: 8300000, guid: 7c20e07a8079d77429bd0a0a841a62ad, type: 3}
+  banditSpawnSound2: {fileID: 8300000, guid: 5928f1121b9758b45a0b4c187a57d74a, type: 3}
 --- !u!61 &4095294915155719813
 BoxCollider2D:
   m_ObjectHideFlags: 0

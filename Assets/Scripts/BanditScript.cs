@@ -3,10 +3,12 @@ using UnityEngine;
 public class BanditScript : MonoBehaviour
 {
     public float minSpeed = 1f;
-    public float maxSpeed = 5f;
+    public float maxSpeed = 4f;
     public Sprite banditShootPlayerSprite;
-    public AudioClip banditShotSound1;
-    public AudioClip banditShotSound2;
+    public AudioClip banditShotSound1; // Shoot sound 1
+    public AudioClip banditShotSound2; // Shoot sound 2
+    public AudioClip banditSpawnSound1; // Spawn sound 1
+    public AudioClip banditSpawnSound2; // Spawn sound 2
 
     private float speed;
     private bool isPlayerHit = false;
@@ -16,28 +18,22 @@ public class BanditScript : MonoBehaviour
 
     private void Start()
     {
-        // Assign random speed
-        speed = Random.Range(minSpeed, maxSpeed);
-
-        // Get the AudioSource component
-        audioSource = GetComponent<AudioSource>();
-
-        // Get reference to ScoreMasterScript in the scene
-        scoreMaster = FindObjectOfType<ScoreMasterScript>();
+        speed = Random.Range(minSpeed, maxSpeed); // Assign random speed
         
-        // Randomize the time to shoot the player (2 to 5 seconds)
-        timeToShootPlayer = Random.Range(2f, 5f);
-
-        // Start countdown to shoot the player
-        Invoke(nameof(ShootPlayer), timeToShootPlayer);
+        audioSource = GetComponent<AudioSource>(); // Get the AudioSource component
+        
+        scoreMaster = FindObjectOfType<ScoreMasterScript>(); // Get reference to ScoreMasterScript in the scene
+        
+        timeToShootPlayer = Random.Range(2f, 4f); // Randomize the time to shoot the player (2 to 5 seconds)
+        
+        Invoke(nameof(ShootPlayer), timeToShootPlayer); // Start countdown to shoot the player
     }
 
     private void Update()
     {
         if (!isPlayerHit)
         {
-            // Move in the assigned direction
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
+            transform.Translate(Vector2.right * speed * Time.deltaTime); // Move in the assigned direction
         }
     }
 
@@ -49,35 +45,23 @@ public class BanditScript : MonoBehaviour
         }
     }
 
-    /*private void OnMouseDown()
+    public void PlayRandomSpawnSound()
     {
-        if (!isPlayerHit)
+        if (audioSource != null)
         {
-            // Play one of the "BanditShot" sounds
-            AudioClip clipToPlay = Random.value > 0.5f ? banditShotSound1 : banditShotSound2;
-            audioSource.PlayOneShot(clipToPlay);
-
-            // Add 250 points to the score
-            //ScoreMasterScript.Instance.AddScore(250);
-
-            // Destroy the bandit after the sound
-            Destroy(gameObject, clipToPlay.length);
+            // Randomly pick a spawn sound
+            AudioClip spawnSound = Random.value > 0.5f ? banditSpawnSound1 : banditSpawnSound2;
+            audioSource.PlayOneShot(spawnSound);
         }
-    }*/
-    
+    }
+
     public void HitByBullet()
     {
-        // Randomly select a shot sound
-        //AudioClip destructionSound = Random.value > 0.5f ? banditShotSound1 : banditShotSound2;
-
-        // Play destruction sound
-        //PlaySound(destructionSound);
-        Debug.Log("Bluh bluh");
-        // Add score
-        AddScore(250);
-
-        // Destroy the bandit
-        Destroy(gameObject, 0.1f); // Delay slightly so sound plays
+        Debug.Log("Bandit hit by bullet");
+        
+        AddScore(250); // Add score
+        
+        Destroy(gameObject, 0.1f); // Destroy the bandit and Delay slightly so sound plays
     }
 
     private void AddScore(int points)
@@ -87,14 +71,7 @@ public class BanditScript : MonoBehaviour
             scoreMaster.AddPoints(points);
         }
     }
-    
-    private void PlaySound(AudioClip clip)
-    {
-        if (clip != null)
-        {
-            AudioSource.PlayClipAtPoint(clip, transform.position);
-        }
-    }
+
     private void ShootPlayer()
     {
         if (!isPlayerHit)

@@ -6,8 +6,7 @@ public class ThrownBottleScript : MonoBehaviour
     public float throwArcAngle = 120f; // Arc angle for random direction
     public float minSpinSpeed = 100f; // Minimum spin speed (degrees per second)
     public float maxSpinSpeed = 500f; // Maximum spin speed (degrees per second)
-
-    // Sprites for the bottle
+    
     public Sprite[] bottleSprites; // Array of sprites to choose from
 
     // Sound effects
